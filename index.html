@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36CFC9',
+                        dark: '#1D2129',
+                        light: '#F2F3F5'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .section-fade {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            }
+            .section-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .nav-link {
+                @apply relative px-3 py-2 text-gray-600 hover:text-primary transition-colors duration-300;
+            }
+            .nav-link::after {
+                content: '';
+                @apply absolute left-0 bottom-0 w-0 h-0.5 bg-primary transition-all duration-300;
+            }
+            .nav-link:hover::after {
+                @apply w-full;
+            }
+            .project-card {
+                @apply bg-white rounded-lg shadow-md p-5 mb-4 transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800 text-lg">
+    <!-- 导航栏 -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-primary font-bold text-lg">个人主页</a>
+            <div class="hidden md:flex space-x-1">
+                <a href="#about" class="nav-link">关于我</a>
+                <a href="#experience" class="nav-link">相关经历</a>
+                <a href="#interests" class="nav-link">学习领域</a>
+                <a href="#publications" class="nav-link">发表</a>
+            </div>
+            <button class="md:hidden text-gray-600 focus:outline-none" id="menuToggle">
+                <i class="fa fa-bars text-lg"></i>
+            </button>
+        </div>
+        <!-- 移动端菜单 -->
+        <div class="md:hidden hidden bg-white shadow-md absolute w-full" id="mobileMenu">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-2">
+                <a href="#about" class="py-2 px-3 hover:bg-gray-100 rounded">关于我</a>
+                <a href="#experience" class="py-2 px-3 hover:bg-gray-100 rounded">相关经历</a>
+                <a href="#interests" class="py-2 px-3 hover:bg-gray-100 rounded">学习领域</a>
+                <a href="#publications" class="py-2 px-3 hover:bg-gray-100 rounded">发表</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 头部：姓名联系方式照片 -->
+    <header class="bg-gradient-to-r from-primary/90 to-primary py-12 md:py-16">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-2/3 text-white mb-8 md:mb-0 md:pr-8">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-4">宋世杰</h1>
+                    <p class="text-2xl md:text-3xl mb-6 opacity-90">数据科学与工程方向 硕士</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="mailto:22360308@zju.edu.cn" class="flex items-center bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full transition-colors">
+                            <i class="fa fa-envelope-o mr-2"></i> 22360308@zju.edu.cn
+                        </a>
+                        <a href="https://github.com/shijiesong01" target="_blank" class="flex items-center bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full transition-colors">
+                            <i class="fa fa-github mr-2"></i> @shijiesong01
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/3">
+                    <div class="rounded-full overflow-hidden border-4 border-white shadow-lg w-48 h-48 md:w-64 md:h-64 mx-auto">
+                        <img src="证明材料/生活照.jpg" alt="个人照片" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 max-w-5xl">
+        <!-- 关于我 -->
+        <section id="about" class="mb-20 section-fade">
+            <h2 class="text-4xl font-bold mb-8 pb-2 border-b-2 border-primary inline-block">关于我</h2>
+            <div class="max-w-3xl">
+                <p class="text-xl leading-relaxed">
+                    我是一名数据科学与工程专业的硕士毕业生，拥有扎实的数学基础和丰富的算法工程实践经验。专注于推荐系统和大模型应用研究，热衷于将先进的AI技术应用于实际产品中，解决真实业务问题。具备良好的团队协作能力和快速学习能力，追求技术创新与工程落地的平衡。
+                </p>
+            </div>
+        </section>
+
+        <!-- 相关经历 -->
+        <section id="experience" class="mb-20 section-fade">
+            <h2 class="text-4xl font-bold mb-8 pb-2 border-b-2 border-primary inline-block">相关经历</h2>
+            
+            <!-- 教育经历 -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <h3 class="text-2xl font-semibold mb-6 text-primary flex items-center">
+                    <i class="fa fa-graduation-cap mr-2"></i> 教育经历
+                </h3>
+                <div class="flex w-full min-h-[400px]">
+                    <!-- 左侧侧边栏 -->
+                    <div class="flex flex-col w-48 mr-8 bg-gray-50 rounded-lg py-4 px-2 gap-2 h-fit self-start sticky top-32">
+                        <button class="education-tab active text-left px-4 py-3 rounded-lg font-semibold text-primary bg-primary/10 hover:bg-primary/20 transition-colors" data-target="zju">浙江大学</button>
+                        <button class="education-tab text-left px-4 py-3 rounded-lg font-semibold text-gray-700 hover:bg-primary/10 transition-colors" data-target="cup">中国石油大学</button>
+                    </div>
+                    <!-- 右侧内容区 -->
+                    <div class="flex-1">
+                        <!-- 浙江大学内容 -->
+                        <div class="education-content" id="zju-content">
+                            <div class="mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">浙江大学 - 电子信息（数据科学与工程）</h4>
+                                <p class="text-gray-600 text-lg">硕士 | 2023.09 - 2026.03</p>
+                            </div>
+                            <!-- 顶部栏 -->
+                            <div class="flex space-x-1 mb-6 bg-gray-100 rounded-lg p-1">
+                                <button class="education-subtab active px-4 py-2 rounded-md font-medium text-lg bg-white text-primary shadow-sm" data-subtarget="zju-study">学习工作</button>
+                                <button class="education-subtab px-4 py-2 rounded-md font-medium text-lg text-gray-600 hover:text-primary transition-colors" data-subtarget="zju-awards">获奖情况</button>
+                                <button class="education-subtab px-4 py-2 rounded-md font-medium text-lg text-gray-600 hover:text-primary transition-colors" data-subtarget="zju-research">科研情况</button>
+                            </div>
+                            <!-- 内容区域 -->
+                            <div class="education-subcontent" id="zju-study-content">
+                                <div class="bg-gray-50 p-4 rounded-lg space-y-3">
+                                    <div class="grid grid-cols-3 gap-4">
+                                        <div>
+                                            <h5 class="font-semibold text-gray-800 mb-2">担任职务</h5>
+                                            <p class="text-gray-600">无</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold text-gray-800 mb-2">综合排名</h5>
+                                            <p class="text-gray-600">无</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold text-gray-800 mb-2">专业绩点</h5>
+                                            <p class="text-gray-600">无</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-800 mb-2">相关课程</h5>
+                                        <div class="space-y-2 text-lg">
+                                            <div class="flex justify-between"><span>数据科学技术与软件实践</span><span class="font-medium text-primary">98</span></div>
+                                            <div class="flex justify-between"><span>计算机视觉</span><span class="font-medium text-primary">90</span></div>
+                                            <div class="flex justify-between"><span>数据工程实践与案例分析</span><span class="font-medium text-primary">96</span></div>
+                                            <div class="flex justify-between"><span>高阶工程认知实践</span><span class="font-medium text-primary">87</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="education-subcontent hidden" id="zju-awards-content">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="space-y-3">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-gray-800">2023-2024 优秀研究生</span>
+                                            <button onclick="openImageModal('证明材料/优秀研究生.jpg')" class="text-primary hover:text-primary-dark text-lg underline">证明材料</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="education-subcontent hidden" id="zju-research-content">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="space-y-4">
+                                        <div>
+                                            <h5 class="font-semibold text-gray-800 mb-2">2023.10-2023.12 鸭蛋声谱识别分类</h5>
+                                            <p class="text-gray-600 text-lg">实现改进的包络线算法，对鸭蛋声谱数据进行可视化、分析和分类。</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold text-gray-800 mb-2">2023.10-2024.12 心音算法设计优化</h5>
+                                            <p class="text-gray-600 text-lg">对心脏病的音频数据进行读取、分析和可视化，并使用深度学习技术进行心脏病检测，包括对不同类型音频样本的分组、网络学习和投票识别，总体识别率接近90%。</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold text-gray-800 mb-2">2025.7-2025.9 自动建标</h5>
+                                            <p class="text-gray-600 text-lg">自动建标项目是将ok,ng类别的声音样本进行特征转换，将数据集划分为建标集和测试集后，用建标集中的ok样本建标，并用ng样本进行演化更新标准；然后将测试集中的样本按照建标结果进行分类，并一同参与标准的演化和更新。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 中国石油大学内容 -->
+                        <div class="education-content hidden" id="cup-content">
+                            <div class="mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">中国石油大学（华东） - 信息与计算科学</h4>
+                                <p class="text-gray-600 text-lg">本科 | 2019.09 - 2023.06</p>
+                            </div>
+                            <!-- 顶部栏 -->
+                            <div class="flex space-x-1 mb-6 bg-gray-100 rounded-lg p-1">
+                                <button class="education-subtab active px-4 py-2 rounded-md font-medium text-lg bg-white text-primary shadow-sm" data-subtarget="cup-study">学习工作</button>
+                                <button class="education-subtab px-4 py-2 rounded-md font-medium text-lg text-gray-600 hover:text-primary transition-colors" data-subtarget="cup-awards">获奖情况</button>
+                                <button class="education-subtab px-4 py-2 rounded-md font-medium text-lg text-gray-600 hover:text-primary transition-colors" data-subtarget="cup-research">科研情况</button>
+                            </div>
+                            <!-- 内容区域 -->
+                            <div class="education-subcontent" id="cup-study-content">
+                                <div class="bg-gray-50 p-4 rounded-lg space-y-3">
+                                    <div class="grid grid-cols-3 gap-4">
+                                        <div>
+                                            <h5 class="font-semibold text-gray-800 mb-2">担任职务</h5>
+                                            <p class="text-gray-600">信息1902团支书</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold text-gray-800 mb-2">综合排名</h5>
+                                            <p class="text-gray-600">3/62</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold text-gray-800 mb-2">专业绩点</h5>
+                                            <p class="text-gray-600">87.9/100</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-800 mb-2">相关课程</h5>
+                                        <div class="space-y-2 text-lg">
+                                            <div class="flex justify-between"><span>高等代数与几何</span><span class="font-medium text-primary">94</span></div>
+                                            <div class="flex justify-between"><span>程序设计</span><span class="font-medium text-primary">100</span></div>
+                                            <div class="flex justify-between"><span>现代密码学</span><span class="font-medium text-primary">95</span></div>
+                                            <div class="flex justify-between"><span>离散数学</span><span class="font-medium text-primary">92</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="education-subcontent hidden" id="cup-awards-content">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="space-y-4">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-gray-800">2021 英语六级考试 518分</span>
+                                            <button onclick="openImageModal('证明材料/英语六级考试.jpg')" class="text-primary hover:text-primary-dark text-lg underline">证明材料</button>
+                                        </div>
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-gray-800">2021 美国大学生数学建模竞赛 M奖</span>
+                                            <button onclick="openImageModal('证明材料/美国大学生数学建模竞赛.png')" class="text-primary hover:text-primary-dark text-lg underline">证明材料</button>
+                                        </div>
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-gray-800">2021 全国大学生数学建模竞赛国家二等奖</span>
+                                            <button onclick="openImageModal('证明材料/全国大学生数学建模竞赛.png')" class="text-primary hover:text-primary-dark text-lg underline">证明材料</button>
+                                        </div>
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-gray-800">2020 山东省软件设计大赛 省一等奖</span>
+                                            <button onclick="openImageModal('证明材料/山东省软件设计大赛.png')" class="text-primary hover:text-primary-dark text-lg underline">证明材料</button>
+                                        </div>
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-gray-800">2022 全国大学生三创赛 校特等奖</span>
+                                            <button onclick="openImageModal('证明材料/全国大学生三创赛.png')" class="text-primary hover:text-primary-dark text-lg underline">证明材料</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="education-subcontent hidden" id="cup-research-content">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="space-y-4">
+                                        <div>
+                                            <h5 class="font-semibold text-gray-800 mb-2">2020.9-2022.4 HIV感染模型研究</h5>
+                                            <p class="text-gray-600 text-lg">基于常微分方程构建含潜伏感染与饱和发生率的 HIV 模型，运用 Lyapunov 函数等方法分析平衡点存在性及稳定性，通过数值模拟验证理论结论，揭示感染动力学规律。</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold text-gray-800 mb-2">2022.3-2022.6 参与跌倒检测项目研究</h5>
+                                            <p class="text-gray-600 text-lg">参与利用机器学习与神经网络方法对跌倒检测、行为识别进行研究。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 外出实践 -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold mb-6 text-primary flex items-center">
+                    <i class="fa fa-briefcase mr-2"></i> 外出实践
+                </h3>
+                <div class="flex w-full min-h-[250px]">
+                    <!-- 左侧侧边栏 -->
+                    <div class="flex flex-col w-48 mr-8 bg-gray-50 rounded-lg py-4 px-2 gap-2 h-fit self-start sticky top-32">
+                        <button class="practice-tab active text-left px-4 py-3 rounded-lg font-semibold text-primary bg-primary/10 hover:bg-primary/20 transition-colors" data-target="jd">京东集团</button>
+                    </div>
+                    <!-- 右侧内容区 -->
+                    <div class="flex-1">
+                        <!-- 京东集团内容 -->
+                        <div class="practice-content" id="jd-content">
+                            <div class="mb-4">
+                                <h4 class="text-xl font-bold text-gray-800">京东集团-大模型算法工程师</h4>
+                                <p class="text-gray-600 text-lg">2022.07 - 2022.12</p>
+                            </div>
+                            <!-- 顶部栏 -->
+                            <div class="flex space-x-1 mb-6 bg-gray-100 rounded-lg p-1">
+                                <button class="practice-subtab active px-4 py-2 rounded-md font-medium text-lg bg-white text-primary shadow-sm" data-subtarget="jd-research">科研助理-生成式推荐</button>
+                                <button class="practice-subtab px-4 py-2 rounded-md font-medium text-lg text-gray-600 hover:text-primary transition-colors" data-subtarget="jd-agent">智能体开发-广告助手</button>
+                            </div>
+                            <!-- 内容区域 -->
+                            <div class="practice-subcontent" id="jd-research-content">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <p class="text-gray-600">参与大模型生成式推荐的科研工作，主要负责数据处理、大模型微调及算法升级工作。</p>
+                                </div>
+                            </div>
+                            <div class="practice-subcontent hidden" id="jd-agent-content">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="space-y-3">
+                                        <div>
+                                            <p class="text-gray-600">1. 对广告客服agent进行迭代优化，提升大模型在商品推荐领域能力。</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-600">2. 参与设计自动化ai push系统，对不同客群自动推送个性化内容。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 学习领域 -->
+        <section id="interests" class="mb-20 section-fade">
+            <h2 class="text-4xl font-bold mb-8 pb-2 border-b-2 border-primary inline-block">学习领域</h2>
+            <div class="flex w-full min-h-[400px]">
+                <!-- 左侧侧边栏 -->
+                <div class="flex flex-col w-40 mr-8 bg-white rounded-lg shadow-md py-4 px-2 gap-2 h-fit self-start sticky top-32">
+                    <button class="interest-tab-sidebar active text-left px-4 py-3 rounded-lg font-semibold text-primary bg-primary/10 hover:bg-primary/20 transition-colors" data-target="ai4lean">AI4Lean</button>
+                    <button class="interest-tab-sidebar text-left px-4 py-3 rounded-lg font-semibold text-gray-700 hover:bg-primary/10 transition-colors" data-target="llm">大模型</button>
+                    <button class="interest-tab-sidebar text-left px-4 py-3 rounded-lg font-semibold text-gray-700 hover:bg-primary/10 transition-colors" data-target="engineering">工程实践</button>
+                </div>
+                <!-- 右侧内容区 -->
+                <div class="flex-1">
+                    <div class="interest-content" id="ai4lean-content">
+                        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                            <p class="text-lg leading-relaxed">
+                                当海量数据训练的神经网络，遇上构造主义代表、绝对严谨的数学定理证明器 Lean，会碰撞出怎样的研究方向与实践效果？理论上，可追溯至定理证明（Theorem Proving）及类型论相关教程；实验上，能拓展数据构建、前提检索、策略预测等优化方向；工程上，可结合大模型挖掘数学教育、AI 数学家等应用潜能。AI4Lean 不仅是我的硕士毕设选题，更是我未来希望深耕探索的领域。
+                            </p>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-4">相关工作</h4>
+                        <div class="space-y-4">
+                            <div class="project-card">
+                                <h5 class="font-bold text-primary mb-3">一、Lean学习分享</h5>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-start">
+                                        <div class="flex-1 mr-4">
+                                            <p class="font-medium mb-2">（1）从集合论悖论到类型论实践</p>
+                                            <p class="text-gray-600 text-sm leading-relaxed">
+                                                该部分以视频形式进行分享：从集合论中的Russull悖论引出类型论的相关概念，讨论了两种演绎系统的区别和联系，随后介绍了定理证明器Lean以及其官方教程《Theorem Proving in Lean 4》最后以自然数构建为目标从集合论与类型论两个角度进行学习
+                                            </p>
+                                        </div>
+                                        <div class="flex-shrink-0">
+                                            <a href="https://space.bilibili.com/476254554?spm_id_from=333.1007.0.0" target="_blank" class="text-primary hover:underline text-lg font-medium">了解详情</a>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-start">
+                                        <div class="flex-1 mr-4">
+                                            <p class="font-medium mb-2">（2）Lean简明学习报告</p>
+                                            <p class="text-gray-600 text-sm leading-relaxed">
+                                                该部分为学习Lean相关教程时的随笔，只着重于简明地介绍Lean，实践Lean，全方位搞懂Lean！
+                                            </p>
+                                        </div>
+                                        <div class="flex-shrink-0">
+                                            <a href="https://uoo5sgpw9p.feishu.cn/docx/XwtfdKAiKofaQwxJax9cU54dnol?from=from_copylink" target="_blank" class="text-primary hover:underline text-lg font-medium">了解详情</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-card">
+                                <h5 class="font-bold text-primary mb-2">二、AI4Lean</h5>
+                                <p class="text-gray-600 italic">内容待补充...</p>
+                            </div>
+                            <div class="project-card">
+                                <h5 class="font-bold text-primary mb-2">三、MathSolver应用平台</h5>
+                                <p class="text-gray-600 italic">内容待补充...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="interest-content hidden" id="llm-content">
+                        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                            <p class="text-gray-600 italic text-center">内容待补充...</p>
+                        </div>
+                    </div>
+                    <div class="interest-content hidden" id="engineering-content">
+                        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+                            <p class="text-gray-600 italic text-center">内容待补充...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 发表 -->
+        <section id="publications" class="mb-12 section-fade">
+            <h2 class="text-4xl font-bold mb-8 pb-2 border-b-2 border-primary inline-block">发表</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <h3 class="text-lg font-semibold mb-2">
+                        <a href="https://doi.org/10.12677/AAM.2022.115308" target="_blank" class="text-primary hover:underline">
+                            基于潜伏感染和饱和发生率的 HIV 感染模型
+                        </a>
+                    </h3>
+                    <p class="text-gray-600 mb-3">构建含潜伏感染与免疫应答的 HIV 模型，分析平衡点稳定性并通过数值模拟验证，对比模型差异提供疾病数据依据。</p>
+                    <div class="flex flex-wrap gap-4 text-lg">
+                        <a href="https://doi.org/10.12677/AAM.2022.115308" target="_blank" class="text-primary hover:underline flex items-center">
+                            <i class="fa fa-external-link mr-1"></i> DOI链接
+                        </a>
+                        <a href="https://www.hanspub.org/journal/paperinformation?paperid=51827" target="_blank" class="text-primary hover:underline flex items-center">
+                            <i class="fa fa-external-link mr-1"></i> 期刊链接
+                        </a>
+                    </div>
+                    <p class="text-gray-500 text-lg mt-2">2022.5</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-8">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2025 个人主页. 保留所有权利.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="mailto:22360308@zju.edu.cn" class="hover:text-primary transition-colors">
+                        <i class="fa fa-envelope-o text-lg"></i>
+                    </a>
+                    <a href="https://github.com/shijiesong01" target="_blank" class="hover:text-primary transition-colors">
+                        <i class="fa fa-github text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动菜单
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+
+        // 领域标签切换
+        const interestTabs = document.querySelectorAll('.interest-tab');
+        interestTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // 移除所有标签的活跃状态
+                interestTabs.forEach(t => {
+                    t.classList.remove('active', 'bg-primary', 'text-white');
+                    t.classList.add('bg-gray-200', 'hover:bg-gray-300');
+                });
+                
+                // 设置当前标签为活跃状态
+                this.classList.add('active', 'bg-primary', 'text-white');
+                this.classList.remove('bg-gray-200', 'hover:bg-gray-300');
+                
+                // 隐藏所有内容
+                document.querySelectorAll('.interest-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // 显示对应内容
+                const target = this.getAttribute('data-target');
+                document.getElementById(`${target}-content`).classList.remove('hidden');
+            });
+        });
+
+        // 滚动显示动画
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('section-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-fade').forEach(section => {
+            observer.observe(section);
+        });
+
+        // 感兴趣领域侧边栏交互
+        const sidebarTabs = document.querySelectorAll('.interest-tab-sidebar');
+        const interestContents = document.querySelectorAll('.interest-content');
+        sidebarTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                sidebarTabs.forEach(t => t.classList.remove('active', 'text-primary', 'bg-primary/10'));
+                this.classList.add('active', 'text-primary', 'bg-primary/10');
+                interestContents.forEach(c => c.classList.add('hidden'));
+                const target = this.getAttribute('data-target');
+                document.getElementById(`${target}-content`).classList.remove('hidden');
+            });
+        });
+
+        // 教育经历侧边栏交互
+        const educationTabs = document.querySelectorAll('.education-tab');
+        const educationContents = document.querySelectorAll('.education-content');
+        educationTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                educationTabs.forEach(t => t.classList.remove('active', 'text-primary', 'bg-primary/10'));
+                this.classList.add('active', 'text-primary', 'bg-primary/10');
+                educationContents.forEach(c => c.classList.add('hidden'));
+                const target = this.getAttribute('data-target');
+                document.getElementById(`${target}-content`).classList.remove('hidden');
+                
+                // 重置子标签状态
+                const currentContent = document.getElementById(`${target}-content`);
+                const subtabs = currentContent.querySelectorAll('.education-subtab');
+                const subcontents = currentContent.querySelectorAll('.education-subcontent');
+                subtabs.forEach(t => t.classList.remove('active', 'bg-white', 'text-primary', 'shadow-sm'));
+                subtabs.forEach(t => t.classList.add('text-gray-600'));
+                subcontents.forEach(c => c.classList.add('hidden'));
+                
+                // 激活第一个子标签
+                const firstSubtab = subtabs[0];
+                const firstSubcontent = subcontents[0];
+                if (firstSubtab && firstSubcontent) {
+                    firstSubtab.classList.add('active', 'bg-white', 'text-primary', 'shadow-sm');
+                    firstSubtab.classList.remove('text-gray-600');
+                    firstSubcontent.classList.remove('hidden');
+                }
+            });
+        });
+
+        // 教育经历子标签交互
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('education-subtab')) {
+                const subtab = e.target;
+                const target = subtab.getAttribute('data-subtarget');
+                const parentContent = subtab.closest('.education-content');
+                
+                // 重置当前学校的所有子标签状态
+                const subtabs = parentContent.querySelectorAll('.education-subtab');
+                const subcontents = parentContent.querySelectorAll('.education-subcontent');
+                
+                subtabs.forEach(t => t.classList.remove('active', 'bg-white', 'text-primary', 'shadow-sm'));
+                subtabs.forEach(t => t.classList.add('text-gray-600'));
+                subcontents.forEach(c => c.classList.add('hidden'));
+                
+                // 激活当前子标签
+                subtab.classList.add('active', 'bg-white', 'text-primary', 'shadow-sm');
+                subtab.classList.remove('text-gray-600');
+                document.getElementById(`${target}-content`).classList.remove('hidden');
+            }
+        });
+
+        // 外出实践侧边栏交互
+        const practiceTabs = document.querySelectorAll('.practice-tab');
+        const practiceContents = document.querySelectorAll('.practice-content');
+        practiceTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                practiceTabs.forEach(t => t.classList.remove('active', 'text-primary', 'bg-primary/10'));
+                this.classList.add('active', 'text-primary', 'bg-primary/10');
+                practiceContents.forEach(c => c.classList.add('hidden'));
+                const target = this.getAttribute('data-target');
+                document.getElementById(`${target}-content`).classList.remove('hidden');
+                
+                // 重置子标签状态
+                const currentContent = document.getElementById(`${target}-content`);
+                const subtabs = currentContent.querySelectorAll('.practice-subtab');
+                const subcontents = currentContent.querySelectorAll('.practice-subcontent');
+                subtabs.forEach(t => t.classList.remove('active', 'bg-white', 'text-primary', 'shadow-sm'));
+                subtabs.forEach(t => t.classList.add('text-gray-600'));
+                subcontents.forEach(c => c.classList.add('hidden'));
+                
+                // 激活第一个子标签
+                const firstSubtab = subtabs[0];
+                const firstSubcontent = subcontents[0];
+                if (firstSubtab && firstSubcontent) {
+                    firstSubtab.classList.add('active', 'bg-white', 'text-primary', 'shadow-sm');
+                    firstSubtab.classList.remove('text-gray-600');
+                    firstSubcontent.classList.remove('hidden');
+                }
+            });
+        });
+
+        // 外出实践子标签交互
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('practice-subtab')) {
+                const subtab = e.target;
+                const target = subtab.getAttribute('data-subtarget');
+                const parentContent = subtab.closest('.practice-content');
+                
+                // 重置当前公司的所有子标签状态
+                const subtabs = parentContent.querySelectorAll('.practice-subtab');
+                const subcontents = parentContent.querySelectorAll('.practice-subcontent');
+                
+                subtabs.forEach(t => t.classList.remove('active', 'bg-white', 'text-primary', 'shadow-sm'));
+                subtabs.forEach(t => t.classList.add('text-gray-600'));
+                subcontents.forEach(c => c.classList.add('hidden'));
+                
+                // 激活当前子标签
+                subtab.classList.add('active', 'bg-white', 'text-primary', 'shadow-sm');
+                subtab.classList.remove('text-gray-600');
+                document.getElementById(`${target}-content`).classList.remove('hidden');
+            }
+        });
+
+        // 图片弹窗功能
+        function openImageModal(imagePath) {
+            // 创建模态框
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            modal.innerHTML = `
+                <div class="relative max-w-4xl max-h-full p-4">
+                    <button onclick="closeImageModal()" class="absolute top-2 right-2 text-white text-lg hover:text-gray-300 z-10">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    <img src="${imagePath}" alt="证明材料" class="max-w-full max-h-full object-contain rounded-lg shadow-lg">
+                </div>
+            `;
+            
+            // 点击背景关闭
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeImageModal();
+                }
+            });
+            
+            document.body.appendChild(modal);
+            document.body.style.overflow = 'hidden'; // 防止背景滚动
+        }
+
+        function closeImageModal() {
+            const modal = document.querySelector('.fixed.inset-0');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = ''; // 恢复滚动
+            }
+        }
+    </script>
+</body>
+</html>
