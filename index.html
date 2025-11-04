@@ -341,14 +341,12 @@
         <section id="interests" class="mb-12 section-fade">
             <h2 class="text-2xl font-bold mb-3 pb-2 border-b-2 border-primary inline-block">学习领域</h2>
             <div class="flex w-full min-h-[150px]">
-                <!-- 左侧侧边栏（固定） -->
-                <div class="flex flex-col w-40 mr-4 bg-white rounded-lg shadow-md py-3 px-1 gap-0.5 h-fit self-start fixed top-32 left-[calc(50vw-28rem+2rem)] z-30">
+                <!-- 左侧侧边栏 -->
+                <div class="flex flex-col w-40 mr-4 bg-white rounded-lg shadow-md py-3 px-1 gap-0.5 h-fit self-start sticky top-32">
                     <button class="interest-tab-sidebar active text-left px-3 py-3 rounded-lg font-semibold text-primary bg-primary/10 hover:bg-primary/20 transition-colors" data-target="ai4lean">AI4Lean</button>
                     <button class="interest-tab-sidebar text-left px-3 py-3 rounded-lg font-semibold text-gray-700 hover:bg-primary/10 transition-colors" data-target="llm">大模型</button>
                     <button class="interest-tab-sidebar text-left px-3 py-3 rounded-lg font-semibold text-gray-700 hover:bg-primary/10 transition-colors" data-target="engineering">工程实践</button>
                 </div>
-                <!-- 占位元素，保持右侧内容布局 -->
-                <div class="w-40 mr-4"></div>
                 <!-- 右侧内容区 -->
                 <div class="flex-1">
                     <div class="interest-content" id="ai4lean-content">
@@ -388,12 +386,7 @@
                             </div>
                             <div class="project-card">
                                 <h5 class="font-bold text-primary mb-2">二、AI4Lean</h5>
-                                <div class="space-y-1">
-                                    <p class="text-gray-600 text-xs leading-relaxed">
-                                        选取了用大模型实现数学问题证明解答的部分代表性工作，该界面暂时停止更新。
-                                    </p>
-                                    <a href="https://shijiesong01.github.io/paper-learn/offline/paper_search_static.html" target="_blank" class="text-primary hover:underline text-xs font-medium">少量代表性论文</a>
-                                </div>
+                                <p class="text-gray-600 italic">少量代表性论文</p>
                             </div>
                             <div class="project-card">
                                 <h5 class="font-bold text-primary mb-2">三、MathSolver应用平台</h5>
