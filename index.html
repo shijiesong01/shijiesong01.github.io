@@ -27,12 +27,10 @@
         @layer utilities {
             .section-fade {
                 opacity: 0;
-                transform: translateY(20px);
-                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+                transition: opacity 0.6s ease-out;
             }
             .section-visible {
                 opacity: 1;
-                transform: translateY(0);
             }
             .nav-link {
                 @apply relative px-3 py-1 text-gray-600 hover:text-primary transition-colors duration-300;
@@ -125,7 +123,7 @@
                 </h3>
                 <div class="flex w-full min-h-[150px]">
                     <!-- 左侧侧边栏 -->
-                    <div class="flex flex-col w-28 mr-4 bg-gray-50 rounded-lg py-3 px-1 gap-0.5 h-fit self-start sticky top-32">
+                    <div class="flex flex-col w-28 mr-4 bg-gray-50 rounded-lg py-3 px-1 gap-0.5 h-fit self-start">
                         <button class="education-tab active text-left px-3 py-3 rounded-lg font-semibold text-primary bg-primary/10 hover:bg-primary/20 transition-colors" data-target="zju">浙江大学</button>
                         <button class="education-tab text-left px-3 py-3 rounded-lg font-semibold text-gray-700 hover:bg-primary/10 transition-colors" data-target="cup">中国石油大学</button>
                     </div>
@@ -297,7 +295,7 @@
                 </h3>
                 <div class="flex w-full min-h-[150px]">
                     <!-- 左侧侧边栏 -->
-                    <div class="flex flex-col w-28 mr-4 bg-gray-50 rounded-lg py-3 px-1 gap-0.5 h-fit self-start sticky top-32">
+                    <div class="flex flex-col w-28 mr-4 bg-gray-50 rounded-lg py-3 px-1 gap-0.5 h-fit self-start">
                         <button class="practice-tab active text-left px-3 py-3 rounded-lg font-semibold text-primary bg-primary/10 hover:bg-primary/20 transition-colors" data-target="jd">京东集团</button>
                     </div>
                     <!-- 右侧内容区 -->
@@ -316,7 +314,7 @@
                             <!-- 内容区域 -->
                             <div class="practice-subcontent" id="jd-research-content">
                                 <div class="bg-gray-50 p-3 rounded-lg">
-                                    <p class="text-gray-600">参与大模型生成式推荐的科研工作，主要负责数据处理、大模型微调及算法升级工作。</p>
+                                    <p class="text-gray-600">参与大模型生成式推荐的科研工作，主要负责数据处理、大模型微调及算法升级工作。复现了Lc-Rec工作并在其基础上做结构创新，旨在提升推荐准确率。</p>
                                 </div>
                             </div>
                             <div class="practice-subcontent hidden" id="jd-agent-content">
@@ -342,7 +340,7 @@
             <h2 class="text-2xl font-bold mb-3 pb-2 border-b-2 border-primary inline-block">学习领域</h2>
             <div class="flex w-full min-h-[150px]">
                 <!-- 左侧侧边栏 -->
-                <div class="flex flex-col w-40 mr-4 bg-white rounded-lg shadow-md py-3 px-1 gap-0.5 h-fit self-start sticky top-32">
+                <div class="flex flex-col w-40 mr-4 bg-white rounded-lg shadow-md py-3 px-1 gap-0.5 h-fit self-start">
                     <button class="interest-tab-sidebar active text-left px-3 py-3 rounded-lg font-semibold text-primary bg-primary/10 hover:bg-primary/20 transition-colors" data-target="ai4lean">AI4Lean</button>
                     <button class="interest-tab-sidebar text-left px-3 py-3 rounded-lg font-semibold text-gray-700 hover:bg-primary/10 transition-colors" data-target="llm">大模型</button>
                     <button class="interest-tab-sidebar text-left px-3 py-3 rounded-lg font-semibold text-gray-700 hover:bg-primary/10 transition-colors" data-target="engineering">工程实践</button>
@@ -352,7 +350,7 @@
                     <div class="interest-content" id="ai4lean-content">
                         <div class="bg-white p-3 rounded-lg shadow-md mb-3">
                             <p class="text-xs leading-relaxed">
-                                当海量数据训练的神经网络，遇上构造主义代表、绝对严谨的数学定理证明器 Lean，会碰撞出怎样的研究方向与实践效果？理论上，可追溯至定理证明（Theorem Proving）及类型论相关教程；实验上，能拓展数据构建、前提检索、策略预测等优化方向；工程上，可结合大模型挖掘数学教育、AI 数学家等应用潜能。AI4Lean 不仅是我的硕士毕设选题，更是我未来希望深耕探索的领域。
+                                当海量数据训练的神经网络，遇上构造主义代表、绝对严谨的数学定理证明器 Lean，会有怎样的研究方向与实践效果？理论上，可追溯至定理证明（Theorem Proving）及类型论相关教程；实验上，能拓展数据构建、前提检索、策略预测等优化方向；工程上，可结合大模型挖掘数学教育、AI 数学家等应用潜能。AI4Lean 不仅是我的硕士毕设选题，也是我未来希望深耕探索的领域。
                             </p>
                         </div>
                         <h4 class="text-sm font-semibold mb-3">相关工作</h4>
@@ -373,7 +371,7 @@
                                     </div>
                                     <div class="flex justify-between items-start">
                                         <div class="flex-1 mr-4">
-                                            <p class="font-medium mb-2">（1）从集合论悖论到类型论实践</p>
+                                            <p class="font-medium mb-2">（2）从集合论悖论到类型论实践</p>
                                             <p class="text-gray-600 text-xs leading-relaxed">
                                                 该视频从集合论中的Russull悖论引出类型论的相关概念，讨论了两种演绎系统的区别和联系。
                                             </p>
@@ -386,7 +384,16 @@
                             </div>
                             <div class="project-card">
                                 <h5 class="font-bold text-primary mb-2">二、AI4Lean</h5>
-                                <p class="text-gray-600 italic">少量代表性论文</p>
+                                <div class="space-y-1">
+                                    <div class="flex justify-between items-start">
+                                        <div class="flex-1 mr-4">
+                                            <p class="text-gray-600 text-xs leading-relaxed">少量代表性论文，该界面暂已停止更新</p>
+                                        </div>
+                                        <div class="flex-shrink-0">
+                                            <a href="https://shijiesong01.github.io/paper-learn/offline/paper_search_static.html" target="_blank" class="text-primary hover:underline text-xs font-medium">了解详情</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="project-card">
                                 <h5 class="font-bold text-primary mb-2">三、MathSolver应用平台</h5>
