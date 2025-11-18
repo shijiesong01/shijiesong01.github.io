@@ -6,6 +6,37 @@
     <title>个人主页</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        .interest-content-wrapper {
+            min-height: 510px;
+        }
+
+        @media (max-width: 768px) {
+            .interest-content-wrapper {
+                min-height: 0;
+            }
+        }
+
+        .education-content-wrapper {
+            min-height: 280px;
+        }
+
+        @media (max-width: 768px) {
+            .education-content-wrapper {
+                min-height: 0;
+            }
+        }
+
+        .practice-content-wrapper {
+            min-height: 180px;
+        }
+
+        @media (max-width: 768px) {
+            .practice-content-wrapper {
+                min-height: 0;
+            }
+        }
+    </style>
 </head>
 <body class="bg-gray-50 font-sans text-gray-800 text-xs">
     <!-- 导航栏 -->
@@ -87,7 +118,7 @@
                         <button class="education-tab text-left px-3 py-3 rounded-lg font-semibold text-gray-700 hover:bg-primary/10 transition-colors" data-target="cup">中国石油大学</button>
                     </div>
                     <!-- 右侧内容区 -->
-                    <div class="flex-1">
+                    <div class="flex-1 education-content-wrapper">
                         <!-- 浙江大学内容 -->
                         <div class="education-content" id="zju-content">
                             <div class="mb-3">
@@ -250,15 +281,16 @@
             <!-- 外出实践 -->
             <div class="bg-white p-3 rounded-lg shadow-md">
                 <h3 class="text-lg font-semibold mb-3 text-primary flex items-center">
-                    <i class="fa fa-briefcase mr-2"></i> 外出实践
+                    <i class="fa fa-briefcase mr-2"></i> 工作实践
                 </h3>
                 <div class="flex w-full min-h-[150px]">
                     <!-- 左侧侧边栏 -->
                     <div class="flex flex-col w-28 mr-4 bg-gray-50 rounded-lg py-3 px-1 gap-0.5 h-fit self-start">
                         <button class="practice-tab active text-left px-3 py-3 rounded-lg font-semibold text-primary bg-primary/10 hover:bg-primary/20 transition-colors" data-target="jd">京东集团</button>
+                        <button class="practice-tab text-left px-3 py-3 rounded-lg font-semibold text-gray-700 hover:bg-primary/10 transition-colors" data-target="vai">浙大VAI组</button>
                     </div>
                     <!-- 右侧内容区 -->
-                    <div class="flex-1">
+                    <div class="flex-1 practice-content-wrapper">
                         <!-- 京东集团内容 -->
                         <div class="practice-content" id="jd-content">
                             <div class="mb-3">
@@ -289,6 +321,20 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- 浙大VAI组内容 -->
+                        <div class="practice-content hidden" id="vai-content">
+                            <div class="mb-3">
+                                <h4 class="text-sm font-bold text-gray-800">浙大VAI组-ai4math科研实践</h4>
+                                <p class="text-gray-600 text-xs">2025.10 - 至今</p>
+                            </div>
+                            <div class="practice-subcontent" id="vai-overview-content">
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <p class="text-gray-600 text-xs leading-relaxed">
+                                        参与利用大模型配合定理证明器 Lean 进行数学问题形式化与求解的科研探索，负责相关文献调研，并对开源工作进行复现与创新。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -305,7 +351,7 @@
                     <button class="interest-tab-sidebar text-left px-3 py-3 rounded-lg font-semibold text-gray-700 hover:bg-primary/10 transition-colors" data-target="engineering">工程实践</button>
                 </div>
                 <!-- 右侧内容区 -->
-                <div class="flex-1">
+                <div class="flex-1 interest-content-wrapper">
                     <div class="interest-content" id="ai4lean-content">
                         <div class="bg-white p-3 rounded-lg shadow-md mb-3">
                             <p class="text-xs leading-relaxed">
@@ -685,6 +731,8 @@
                 if (firstSubtab && firstSubcontent) {
                     firstSubtab.classList.add('active', 'bg-white', 'text-primary', 'shadow-sm');
                     firstSubtab.classList.remove('text-gray-600');
+                    firstSubcontent.classList.remove('hidden');
+                } else if (!firstSubtab && firstSubcontent) {
                     firstSubcontent.classList.remove('hidden');
                 }
             });
