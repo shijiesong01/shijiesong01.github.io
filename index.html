@@ -4,49 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人主页</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#165DFF',
-                        secondary: '#36CFC9',
-                        dark: '#1D2129',
-                        light: '#F2F3F5'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .section-fade {
-                opacity: 0;
-                transition: opacity 0.6s ease-out;
-            }
-            .section-visible {
-                opacity: 1;
-            }
-            .nav-link {
-                @apply relative px-3 py-1 text-gray-600 hover:text-primary transition-colors duration-300;
-            }
-            .nav-link::after {
-                content: '';
-                @apply absolute left-0 bottom-0 w-0 h-0.5 bg-primary transition-all duration-300;
-            }
-            .nav-link:hover::after {
-                @apply w-full;
-            }
-            .project-card {
-                @apply bg-white rounded-lg shadow-md p-5 mb-3 transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
-            }
-        }
-    </style>
 </head>
 <body class="bg-gray-50 font-sans text-gray-800 text-xs">
     <!-- 导航栏 -->
